@@ -1,0 +1,22 @@
+The chi_histo_plot.py contains a function that can be used for plotting the 
+histograms of dihedral angles from the gmx chi function whith a coloring 
+over time.
+
+It contains two main functions:
+The plot:
+def hisColum(filelists, bins=36.0, figsize=(11.96, 6), njumps=11, shift=0):
+    """Takes ((file1_1,file1_2,..),(file2_1,file2_2,..),..) and plots 
+    histograms of file1* over file2* over ...
+    njumps: coarse-grainedness of the time-coloring
+    bins: number of bins in histogram
+    shift: shift of residuenumber in the label"""
+
+And a helper function that plots for dir-names and the angles specified. 
+(Only good for up to ~15 residues.)
+def combined_plot(dir_names, angles=["phi", "psi", "chi1"], **kwargs):
+
+You need to run gmx chi first to generate the input-files. Something like:
+gmx_mpi chi -s $conf -f $traj -phi -psi -omega -all -maxchi 6
+
+NOTE: If you have more than one chain in the system it is nessecary to split
+ the trajectory and conf file into seperate files and then run gmx chi
