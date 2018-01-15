@@ -18,5 +18,11 @@ def combined_plot(dir_names, angles=["phi", "psi", "chi1"], **kwargs):
 You need to run gmx chi first to generate the input-files. Something like:
 gmx_mpi chi -s $conf -f $traj -phi -psi -omega -all -maxchi 6
 
+You can use this script for different sequences with an alignment file as well.
+In the alignmen file the gap is '-'. If one of your sequence is shorter then 
+the other than you should use ' ' where is no residue in the sequence. The
+labels must be the same in the alignment file as it is in the config file. This
+implies that you should separate the label and the sequenc with 'tab'.
+
 NOTE: If you have more than one chain in the system it is nessecary to split
  the trajectory and conf file into seperate files and then run gmx chi

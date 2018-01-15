@@ -4,9 +4,8 @@ import glob
 import re
 import matplotlib as mpl
 
-__date__ = "2017_11_02"
+__date__ = "2018_01_04"
 __author__ = "Mads Nygaard"
-
 
 # A key to sort after numbers in the string
 def natural_n_first_sort_key(s, _nsre=re.compile('[a-z]{3}\d?[A-Z0-9]{3}(\d+)')):
@@ -36,7 +35,7 @@ def hisColum(filelists, labels=None, bins=36.0, figsize=(11.96, 6), njumps=11, g
     n_cols = len(max(filelists, key=lambda x: len(x)))
     n_rows = len(filelists)
     fig, doubaxlist = plt.subplots(n_rows, n_cols, sharex=True,
-                                   sharey=False, figsize=figsize)
+                                   sharey=True, figsize=figsize)
     fig.subplots_adjust(top=0.98, bottom=0.10, right=0.98, left=0.08,
                         hspace=0.09, wspace=0.09)
     if n_rows == 1:  # Wrap in list if only one folder
@@ -55,13 +54,13 @@ def hisColum(filelists, labels=None, bins=36.0, figsize=(11.96, 6), njumps=11, g
         rowcount += 1
         colcount = 0
         if label is not None:
-            axlist[0].set_ylabel(label)
+            axlist[0].set_ylabel(label, fontsize=10)
         for ax, fname in zip(axlist, filelist):
             colcount += 1
             if rowcount is n_rows:
-                ax.set_xlabel("Degrees")
+                ax.set_xlabel("Degrees", fontsize=10)
             print rowcount, colcount
-            if fname is not None and fname is not '-':
+            if fname is not None and fname is not '-' and fname is not ' ':
                 data = xmgdatgen(fname)  # Loading data
                 data, mintime, maxtime = data[:, 1], data[0, 0], data[-1, 0]
                 datalen = len(data)
@@ -81,8 +80,10 @@ def hisColum(filelists, labels=None, bins=36.0, figsize=(11.96, 6), njumps=11, g
                 maxtime = np.float64(0)
                 if fname == '-':
                     text = '-'
+                elif fname == ' ':
+                    text = 'no res'
                 else:
-                    text = ""
+                    text = 'no angle'
             ax.text(0.05, 0.8, text, transform=ax.transAxes, size=10)  # Adding the label 
     
     # Pretty x_axis for degrees
@@ -127,7 +128,8 @@ def combined_plot(dir_names, n=11, angles=["phi", "psi", "chi1"],
         with open(fname, "r") as f:
             for line in f.readlines():
                 l = line.split('\t')
-                a_dict[l[0]] = l[1].strip()
+                a_dict[l[0]] = l[1][:-1]
+#        print a_dict
         return a_dict
     
     def __inthelist(reg, flist):
@@ -164,6 +166,9 @@ def combined_plot(dir_names, n=11, angles=["phi", "psi", "chi1"],
                     if r == '-':
                         new_list_of_files.append('-')
                         db += 1
+                    elif r == ' ':
+                        new_list_of_files.append(' ')
+                        db += 1
                     else:
                         j = str(i-db+1)
                         regex_res = r""+loc+".*"+angle+l_to_regex(restypes, 3)+j+"\.xvg"
@@ -179,9 +184,10 @@ def combined_plot(dir_names, n=11, angles=["phi", "psi", "chi1"],
 
         #check if both are None in the same position then delete them!
         k = 0
+#        print list_of_filelist
         while(k < len(list_of_filelist[0])):
             l = 0
-            while(l < len(list_of_filelist) and list_of_filelist[l][k] is None):
+            while(l < len(list_of_filelist) and (list_of_filelist[l][k] is None or list_of_filelist[l][k]==' ')):
                 l += 1
             if(l >= len(list_of_filelist)):
                 for l in range(len(list_of_filelist)):
@@ -189,7 +195,7 @@ def combined_plot(dir_names, n=11, angles=["phi", "psi", "chi1"],
             k += 1
 
 #        print list_of_filelist
-        n = 10         
+        n = int(n)
         l = [zip(*list_of_filelist)[i:i + n] for i in xrange(0, len(zip(*list_of_filelist)), n)]
 #        break
          
@@ -279,7 +285,7 @@ if __name__ == "__main__":
 
     parser.add_argument("-f", metavar="config.cfg", default="config.cfg",
                         help="Specify the input config file")
-    parser.add_argument("-align", metavar="align.aln", default="align.aln", help="Specify the input alignment file like: label1 sequence with gaps(-) next line label2...")
+    parser.add_argument("-align", metavar="align.aln", default="align.aln", help="Tab separate alignment file like: label1 \t seq1 \n label2 \t seq2... (- is a gap)")
     
     args = parser.parse_args()    
 
