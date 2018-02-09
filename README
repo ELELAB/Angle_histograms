@@ -30,6 +30,7 @@ gmx_mpi chi -s $conf -f $traj -phi -psi -omega -all -maxchi 6
 
 In cases in which you have more than one chain in the system, it is necessary to split the trajectory and the conf file into separated files and then run gmx chi.
 
+If the user runs the analyses in remote, the graphical interface support should be used.
 
 HOW TO RUN:
 
