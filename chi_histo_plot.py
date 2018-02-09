@@ -1,11 +1,26 @@
+# -*- coding: utf-8 -*- 
+#    PyInteraph, a software suite to analyze interactions and interaction network in structural ensembles.
+#    Copyright (C) 2018 Matteo Lambrughi, Matteo Tiberti, Maria Francesca Allega, Valentina Sora, Mads Nygaard, Agota Toth, Juan Salamanca Viloria, Emmanuelle Bignon, Elena Papaleo <elenap@cancer.dk>
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import numpy as np
 import matplotlib.pyplot as plt
 import glob
 import re
 import matplotlib as mpl
 
-__date__ = "2018_01_04"
-__author__ = "Mads Nygaard"
+__date__ = "2018_02_09"
+__authors__ = "Mads Nygaard & Agota Toth"
 
 # A key to sort after numbers in the string
 def natural_n_first_sort_key(s, _nsre=re.compile('[a-z]{3}\d?[A-Z0-9]{3}(\d+)')):
@@ -338,9 +353,9 @@ folders = ["./C22st_unPhos_mod1/",
 # Run plot, specify the res-num shift (if any) and angles if other than "default"
 combined_plot(folders, shift=200)
 
-# A more manual way is shown below.
+# A manual way is shown below.
 # e.g. if more than 10-15 angles are needed to be plot it is an idea
-# to do some slicing of the lists and plot in seperate plots
+# to do a slicing of the lists and plot in seperate plots
 
 phi1 = sorted(glob.glob("./C22st_unPhos_mod1/phi*.xvg"), key=natural_n_first_sort_key)
 psi1 = sorted(glob.glob("./C22st_unPhos_mod1/psi*.xvg"), key=natural_n_first_sort_key)
