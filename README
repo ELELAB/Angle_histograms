@@ -1,4 +1,4 @@
-Chi_histo_plot.py
+Computational Biology Laboratory, Danish Cancer Society Research Center, Strandboulevarden 49, 2100, Copenhagen, Denmark
 
 
 The chi_histo_plot.py is a simple python script that contains a function that can be used to generate histogram plots of protein dihedral angles (backbone or sidechain) from a molecular dynamics simulations.
