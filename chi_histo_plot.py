@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*- 
-#    PyInteraph, a software suite to analyze interactions and interaction network in structural ensembles.
 #    Copyright (C) 2018 Matteo Lambrughi, Matteo Tiberti, Maria Francesca Allega, Valentina Sora, Mads Nygaard, Agota Toth, Juan Salamanca Viloria, Emmanuelle Bignon, Elena Papaleo <elenap@cancer.dk>
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
