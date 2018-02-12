@@ -342,34 +342,4 @@ if __name__ == "__main__":
                   restypes=settings["restypes"], resids=settings["resids"],
                   gshift=settings["gshift"], align=args.align)
 
-    #SORT resids
-"""
-# Add folders here:
-folders = ["./C22st_unPhos_mod1/",
-           "./C22st_S1043p_mod1/"]
 
-# Run plot, specify the res-num shift (if any) and angles if other than "default"
-combined_plot(folders, shift=200)
-
-# A manual way is shown below.
-# e.g. if more than 10-15 angles are needed to be plot it is an idea
-# to do a slicing of the lists and plot in seperate plots
-
-phi1 = sorted(glob.glob("./C22st_unPhos_mod1/phi*.xvg"), key=natural_n_first_sort_key)
-psi1 = sorted(glob.glob("./C22st_unPhos_mod1/psi*.xvg"), key=natural_n_first_sort_key)
-chi1 = sorted(glob.glob("./C22st_unPhos_mod1/chi1*.xvg"), key=natural_n_first_sort_key)
-phi2 = sorted(glob.glob("./C22st_S1043p_mod1/phi*.xvg"), key=natural_n_first_sort_key)
-psi2 = sorted(glob.glob("./C22st_S1043p_mod1/psi*.xvg"), key=natural_n_first_sort_key)
-chi2 = sorted(glob.glob("./C22st_S1043p_mod1/chi1*.xvg"), key=natural_n_first_sort_key)
-
-
-
-hisColum((phi1, phi2))
-plt.savefig("Phi_2.pdf")
-
-hisColum((chi1, chi2))
-plt.savefig("Chi_2.pdf")
-
-hisColum((psi1, psi2))
-plt.savefig("Psi_2.pdf")
-"""
