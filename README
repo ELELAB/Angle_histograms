@@ -39,5 +39,6 @@ python chi_histo_plot.py -f config.cfg -align align.aln
 When using the chi_histo_plot.py for publication please cite:
 
 Matteo Lambrughi, Matteo Tiberti, Maria Francesca Allega, Valentina Sora, Mads Nygaard, Agota Toth, Juan Salamanca Viloria, Emmanuelle Bignon, Elena Papaleo*, Analyzing biomolecular ensembles, in preparation. 
+Methods Mol Biol. 2019;2022:415-451. doi: 10.1007/978-1-4939-9608-7_18.
 
 
